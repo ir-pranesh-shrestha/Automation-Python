@@ -1,9 +1,6 @@
 name: Automation Policy Applied
 
 on:
-  schedule:
-    - cron: "15 20 * * *" # 5:50 AM NPT (12:05 AM UTC)
-    - cron: "15 3 * * *" # 1:00 PM NPT (87:15 AM UTC)
   workflow_dispatch:
 
 permissions:
@@ -19,8 +16,8 @@ jobs:
       - name: Setup PSE
         uses: invisirisk/pse-action@latest
         with:
-          api_url: "https://app.invisirisk.com"
-          app_token: ${{ secrets.IR_API_KEY_PROD_POLICY }}
+          api_url: "https://app.dev.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY }}
           debug: true
           
       - uses: actions/checkout@v4
@@ -120,7 +117,7 @@ jobs:
          - name: Gather Status
            uses: invisirisk/pse-action@latest
            with:
-            api_url: "https://app.invisirisk.com"
-            app_token: ${{ secrets.IR_API_KEY_PROD_POLICY }}
+            api_url: "https://app.dev.invisirisk.com"
+            app_token: ${{ secrets.IR_API_KEY }}
             send_job_status: "true"
             debug: "true"
